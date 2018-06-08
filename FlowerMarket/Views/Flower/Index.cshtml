@@ -1,0 +1,46 @@
+﻿@model IEnumerable<FlowerMarket.Models.Flower>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<form method="post">
+    <input type="text" name="query" value="" />
+    <input type="submit" name="Filter" value="Filter" class="btn btn-primary" />
+</form>
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Name", "Index", new { SortField = ViewBag.SortFieldName})
+        </th>
+        <th>
+            @Html.ActionLink("Country", "Index", new { SortField = ViewBag.SortFieldCountry })
+        </th>
+        <th>
+            @Html.ActionLink("Price", "Index", new { SortField = ViewBag.SortFieldSell_Price })
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Country)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sell_Price)
+        </td>
+        <td>
+            @Html.ActionLink("Make order", "Create", "Order", new { id = item.ID }, null)
+        </td>
+    </tr>
+}
+
+</table>
